@@ -2,7 +2,19 @@
 
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+  layout 'admin'
+  
+  def after_sign_in_path_for(resouce)
+     customers_my_page_path
+  end
+  
+  def after_sign_out_path_for(resouce)
+     root_path
+  end
+  
+  
+  
+  
   # GET /resource/sign_in
   # def new
   #   super
