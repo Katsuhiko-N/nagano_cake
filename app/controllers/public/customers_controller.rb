@@ -3,6 +3,15 @@ class Public::CustomersController < ApplicationController
         @customer = Customer.find(current_customer.id)
     end
     
+    def edit
+        @customer = Customer.find(current_customer.id)
+    end
+    
+    def update
+        @customer.update(customer_params)
+    end
+    
+    
     
     private
     

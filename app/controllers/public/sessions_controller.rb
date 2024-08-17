@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
   layout 'admin'
+  before_action :customer_state, only: [:create]
+  
   
   def after_sign_in_path_for(resouce)
      customers_my_page_path
@@ -15,6 +16,20 @@ class Public::SessionsController < Devise::SessionsController
   
   
   
+  private
+  
+  def customer_state
+    # 処理１　emailを取得
+    customer = Customer.find_by(email:params[:customer][:email])
+    # 処理２　アカウントが存在するか否か(nilでreturn)
+    return if customer.nil?
+    # 処理３　パスワードが一致するか
+    return unless customer.valid_password?(params[:customer][:passeord])
+    # 処理４　アクティブでない会員をサインアップ画面へ
+    return if Customer.is_active == true
+    redirect_to new_customer_registration_path
+    
+    
   # GET /resource/sign_in
   # def new
   #   super
