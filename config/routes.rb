@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   
   scope module: :public do
     # カスタマー関係
-    get 'customers/my_page' => 'customers#show'
+    get 'customers/my_page' => 'customers#show', as: "c_show"
+    get 'customers/infomation/edit' => 'customers#edit', as: "c_edit"
+    patch 'customers/infomation' => 'customers#update', as: "c_update"
   end
   
   

@@ -1,33 +1,35 @@
 <h3>会員情報編集</h3>
 
 <div>
-    <% form_with model:@customer do |f| %>
+    <%= form_with model: @customer, url: c_update_path do |f| %>
     <table>
         <tbody>
             <tr>
                 <td>氏名</td>
-                <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+                <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
             </tr>
             <tr>
                 <td>カナ</td>
-                <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+                <td><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></td>
             </tr>
             <tr>
                 <td>郵便番号</td>
-                <td><%= @customer.postal_code %></td>
+                <td><%= f.text_field :postal_code %></td>
             </tr>
             <tr>
                 <td>住所</td>
-                <td><%= @customer.address %></td>
+                <td><%= f.text_field :address %></td>
             </tr>
             <tr>
                 <td>電話番号</td>
-                <td><%= @customer.telephone_number %></td>
+                <td><%= f.text_field :telephone_number %></td>
             </tr>
             <tr>
                 <td>メールアドレス</td>
-                <td><%= @customer.email %></td>
+                <td><%= f.text_field :email %></td>
             </tr>
         </tbody>
     </table>
+    <%= f.submit "登録内容を保存" %>
+    <% end %>
 </div>

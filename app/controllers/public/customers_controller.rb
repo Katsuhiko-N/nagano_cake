@@ -8,7 +8,13 @@ class Public::CustomersController < ApplicationController
     end
     
     def update
-        @customer.update(customer_params)
+        @customer = Customer.find(current_customer.id)
+        @customer.id = current_customer.id
+        if @customer.update(customer_params)
+            redirect_to c_show_path
+        else
+            render :edit
+        end
     end
     
     

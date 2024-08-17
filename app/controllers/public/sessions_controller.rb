@@ -6,7 +6,7 @@ class Public::SessionsController < Devise::SessionsController
   
   
   def after_sign_in_path_for(resouce)
-     customers_my_page_path
+     c_show_path
   end
   
   def after_sign_out_path_for(resouce)
@@ -28,6 +28,7 @@ class Public::SessionsController < Devise::SessionsController
     # 処理４　アクティブでない会員をサインアップ画面へ
     return if Customer.is_active == true
     redirect_to new_customer_registration_path
+  end
     
     
   # GET /resource/sign_in
