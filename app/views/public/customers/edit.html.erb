@@ -6,11 +6,13 @@
         <tbody>
             <tr>
                 <td>氏名</td>
-                <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
+                <td><%= f.text_field :last_name %></td>
+                <td><%= f.text_field :first_name %></td>
             </tr>
             <tr>
                 <td>カナ</td>
-                <td><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></td>
+                <td><%= f.text_field :last_name_kana %></td>
+                <td><%= f.text_field :first_name_kana %></td>
             </tr>
             <tr>
                 <td>郵便番号</td>
@@ -32,4 +34,5 @@
     </table>
     <%= f.submit "登録内容を保存" %>
     <% end %>
+    <%= link_to "退会する", c_unsubsclibe_path %>
 </div>

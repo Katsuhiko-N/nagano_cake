@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'customers/my_page' => 'customers#show', as: "c_show"
     get 'customers/infomation/edit' => 'customers#edit', as: "c_edit"
     patch 'customers/infomation' => 'customers#update', as: "c_update"
+    get 'customers/unsubsclibe' => 'customers#unsubsclibe', as: "c_unsubsclibe"
   end
   
   
