@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   layout 'admin'
-  before_action :customer_state, only: [:create]
+  # before_action :customer_state, only: [:create]
   
   
   def after_sign_in_path_for(resouce)

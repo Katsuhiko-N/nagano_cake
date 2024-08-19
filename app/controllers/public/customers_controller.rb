@@ -21,8 +21,16 @@ class Public::CustomersController < ApplicationController
     end
     
     def withdraw
-        @customer = Customer.find(current_customer.id)
-        @customer.is_active = faulse
+        customer = Customer.find(is_active: current_customer.id)
+        if customer.is_active == true
+            customer.is_active = false
+            customer.update(customer_params)
+            redirect_to c_show_path
+        else
+            customer.is_active = true
+            customer.update(customer_params)
+            redirect_to c_show_path
+        end
     end
     
     
