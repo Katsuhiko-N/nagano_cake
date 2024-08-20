@@ -21,14 +21,14 @@ class Public::CustomersController < ApplicationController
     end
     
     def withdraw
-        customer = Customer.find(is_active: current_customer.id)
+        customer = Customer.find(current_customer.id)
         if customer.is_active == true
-            customer.is_active = false
-            customer.update(customer_params)
+            customer.id = current_customer.id
+            customer.update(is_active: false)
             redirect_to c_show_path
         else
-            customer.is_active = true
-            customer.update(customer_params)
+            customer.id = current_customer.id
+            customer.update(is_active: true)
             redirect_to c_show_path
         end
     end
@@ -41,7 +41,8 @@ class Public::CustomersController < ApplicationController
     
     def customer_params
         params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
-      :postal_code, :address, :telephone_number, :is_active)
+      :postal_code, :address, :telephone_number)
     end
+    
     
 end
