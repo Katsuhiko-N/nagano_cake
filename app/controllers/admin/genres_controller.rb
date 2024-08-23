@@ -5,14 +5,11 @@ class Admin::GenresController < ApplicationController
     end
     
     def create
+        @genre_save = Genre.new(genre_params)
+        @genre_save.save
         @genres = Genre.all
         @genre = Genre.new
-        @genre_save = Genre.new(genre_params)
-        render index
-    end
-    
-    def show
-        
+        render :index
     end
     
     def edit
@@ -26,8 +23,8 @@ class Admin::GenresController < ApplicationController
     
     private
     
-    def index_params
-        params.require(:genre).parmit(:name)
+    def genre_params
+        params.require(:genre).permit(:name)
     end
     
     
