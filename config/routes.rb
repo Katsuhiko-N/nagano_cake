@@ -25,8 +25,9 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root to: 'homes#top'
-    get 'genres/index' => 'genres#index'
-    post 'genres/create' => 'genres#create'
+    resources :genres, except: [:new, :show, :destroy]
+    # get 'genres/index' => 'genres#index'
+    # post 'genres/create' => 'genres#create'
   end
   
   
