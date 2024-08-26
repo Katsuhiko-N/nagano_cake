@@ -7,6 +7,7 @@ class Admin::GenresController < ApplicationController
     def create
         @genre_save = Genre.new(genre_params)
         @genre_save.save
+        # 以下renderで再表示用インスタンス変数
         @genres = Genre.all
         @genre = Genre.new
         render :index
