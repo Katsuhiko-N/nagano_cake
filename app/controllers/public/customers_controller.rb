@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
         @customer = Customer.find(current_customer.id)
         @customer.id = current_customer.id
         if @customer.update(customer_params)
-            redirect_to c_show_path
+            redirect_to customer_path(current_customer.id)
         else
             render :edit
         end
@@ -25,11 +25,11 @@ class Public::CustomersController < ApplicationController
         if customer.is_active == true
             customer.id = current_customer.id
             customer.update(is_active: false)
-            redirect_to c_show_path
+            redirect_to customer_path(current_customer.id)
         else
             customer.id = current_customer.id
             customer.update(is_active: true)
-            redirect_to c_show_path
+            redirect_to customer_path(current_customer.id)
         end
     end
     

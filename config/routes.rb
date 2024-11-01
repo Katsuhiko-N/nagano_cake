@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   root to: 'homes#top'
   
-  # customer用
+  # customer用(名前空間はpublic)
   devise_for :customer, skip:[:passwords], controllers:{
     registrations: "public/registrations",
     sessions: "public/sessions"
@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   
   scope module: :public do
     # カスタマー関係
-    get 'customers/my_page' => 'customers#show', as: "c_show"
-    get 'customers/infomation/edit' => 'customers#edit', as: "c_edit"
-    patch 'customers/infomation' => 'customers#update', as: "c_update"
-    get 'customers/unsubscribe' => 'customers#unsubscribe', as: "c_unsubscribe"
-    patch 'customers/withdraw' => 'customers#withdraw', as: "c_withdraw"
+    resources :customers, except: [:new, :index, :delete] do
+      member do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
   
   

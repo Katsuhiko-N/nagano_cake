@@ -1,7 +1,7 @@
 <h3>会員情報編集</h3>
 
 <div>
-    <%= form_with model: @customer, url: c_update_path do |f| %>
+    <%= form_with model: @customer do |f| %>
     <table>
         <tbody>
             <tr>
@@ -36,5 +36,5 @@
     <% end %>
     
     
-    <%= link_to "退会する", c_unsubscribe_path %>
+    <%= link_to "退会する", unsubscribe_customer_path(current_customer.id) %>
 </div>

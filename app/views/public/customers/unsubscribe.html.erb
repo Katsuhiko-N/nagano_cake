@@ -2,11 +2,11 @@
 <p>退会すると、会員登録情報や<br>これまでの購入履歴が閲覧できなくなります</p>
 <p>退会する場合は、「退会する」をクリックしてください</p>
 
-<%= link_to c_edit_path do %>
+<%= link_to edit_customer_path(current_customer.id) do %>
     <dir><p>退会しない</p></dir>
 <% end %>
 
 
-<%= link_to c_withdraw_path, method: :patch  do %>
+<%= link_to withdraw_customer_path(current_customer.id), method: :patch  do %>
     <dir><p>退会する</p></dir>
 <% end %>
