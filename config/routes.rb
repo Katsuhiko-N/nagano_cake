@@ -9,14 +9,28 @@ Rails.application.routes.draw do
   }
   
   scope module: :public do
-    # カスタマー関係
+    # カスタマー(ユーザー)関係
     resources :customers, except: [:new, :index, :delete] do
       member do
         get 'unsubscribe'
         patch 'withdraw'
       end
     end
+    
+    # ジャンル機能
+    resources :genres, except: [:new]
+    
   end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   # admin用
