@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
     
     # ジャンル機能
-    resources :genres, except: [:new]
+    resources :genres, except: [:new, :destroy]
     
   end
   
