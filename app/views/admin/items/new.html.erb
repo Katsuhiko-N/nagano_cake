@@ -1,0 +1,28 @@
+<h2>商品新規登録</h2>
+
+<div>
+    <%= form_with model: @item do |f| %>
+        <%= f.label :image, "商品画像" %>
+        <%= f.file_field :image, accept: "image/*" %>
+        
+        
+        <%= f.label :name, "商品名" %>
+        <%= f.text_field :name, placeholder: "商品名" %>
+        
+        <%= f.label :introduction, "商品説明" %>
+        <%= f.text_area :introduction, placeholder: "ここで説明文を記述します" %>
+        
+        <%= f.label :genre, "ジャンル" %>
+        <%= f.collection_select :カラム名, Genre.all, :id, :選択肢として表示カラム, include_blank: "空欄時の表示" %>
+        
+        <%= f.label :genre, "税込み価格" %>
+        <%= f.number_field :price %><span>円</span>
+        
+        
+        <%= f.label :is_active, "販売ステータス" %>
+        <%= f.radio_button :is_active, :true %>
+        
+        <%= f.submit '新規登録' %>
+    
+    <% end %>
+</div>

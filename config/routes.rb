@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
   
+  # customer側各機能
   scope module: :public do
     # カスタマー(ユーザー)関係
     resources :customers, except: [:new, :index, :delete] do
@@ -38,11 +39,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  # admin側各機能
   namespace :admin do
     root to: 'homes#top'
     resources :genres, except: [:new, :show, :destroy]
-    # get 'genres/index' => 'genres#index'
-    # post 'genres/create' => 'genres#create'
+    resources :items
   end
   
   
