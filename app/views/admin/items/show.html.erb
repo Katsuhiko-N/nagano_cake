@@ -1,0 +1,9 @@
+<h2>商品詳細</h2>
+
+<div>
+    <span>商品名</span><%= item.name %><br>
+    <span>商品説明</span>><%= item.price %><br>
+    <span>ジャンル</span><%= item.genre %><br>
+    <span>税込み価格（税抜価格</span><%= "#{item.price}.to_i * 1.1" %><%= "(item.price)" %>円<br>
+    <span>販売ステータス</span><%= item.is_active %><br>
+    </div>
