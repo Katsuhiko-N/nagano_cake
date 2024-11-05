@@ -1,9 +1,37 @@
 <h2>商品詳細</h2>
 
 <div>
-    <span>商品名</span><%= item.name %><br>
-    <span>商品説明</span>><%= item.price %><br>
-    <span>ジャンル</span><%= item.genre %><br>
-    <span>税込み価格（税抜価格</span><%= "#{item.price}.to_i * 1.1" %><%= "(item.price)" %>円<br>
-    <span>販売ステータス</span><%= item.is_active %><br>
-    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td><p>商品名</p></td><td><%= @item.name %></td>
+            </tr>
+            <tr>
+                <td><p>商品説明</p></td><td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+                <td><p>ジャンル</p></td><td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+                <td><p>税込み価格（税抜価格）</p></td><td><%= (@item.price.to_i * 1.1).to_s %>(<%= @item.price %>)円</td>
+            </tr>
+            <tr>
+                <td><p>ジャンル</p></td><td><%= @item.genre.name %></td>
+            </tr>
+            <tr>
+                <td><p>販売ステータス</p></td>
+                <td>
+                    <% if @item.is_active == true %>
+                        <p>販売中</p>
+                    <% else %>
+                        <p>販売停止中</p>
+                    <% end %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%= link_to edit_admin_item_path(@item.id) do %>
+    <p>編集する</p>
+<% end %>
