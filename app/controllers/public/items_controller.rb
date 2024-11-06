@@ -4,9 +4,9 @@ class Public::ItemsController < ApplicationController
     
     @genres = Genre.all
     if params[:genre_name] == nil
-      @items = Item.all
+      @items = Item.where(is_active: true)
     else
-      @items = Genre.find_by(name: params[:genre_name]).items
+      @items = Genre.find_by(name: params[:genre_name]).items.where(is_active: true)
     end
     
   end
