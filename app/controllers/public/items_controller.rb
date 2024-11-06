@@ -1,5 +1,5 @@
 class Public::ItemsController < ApplicationController
-  
+  # before_action :authenticate_admin!
   def index
     
     @genres = Genre.all
@@ -12,6 +12,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
     @item = Item.find(params[:id])
   end
   
