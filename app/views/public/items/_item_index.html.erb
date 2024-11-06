@@ -1,0 +1,6 @@
+
+
+<%= items.each do |item| %>
+    <div><%= iamge_tag item.iamge, size: "150x150" %></div>
+    <p><% item.name %></p>
+    <p><%= number_to_currency(item.price, unit: "￥", strip_insignificant_zeros: true) %></p>
