@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row-fluid d-flex">
+        <div class="col-2">
+            <%= render 'genre_index', genres: @genres %>
+        </div>
+        <div class="col-8">
+            <% if params[:genre_name] == nil %>
+                <h3>商品一覧</h3><p>全<%= @items.count %>件</p>
+            <% else %>
+                <h3><%= params[:genre_name] %>一覧</h3><p>全<%= @items.count %>件</p>
+            <% end %>
+            <%= render 'item_index', items: @items %>
+        </div>
+    </div>
+</div>
+
+
+

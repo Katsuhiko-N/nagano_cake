@@ -2,12 +2,7 @@ Rails.application.routes.draw do
   
   root to: 'homes#top'
   
-  # customer用(名前空間はpublic)
-  devise_for :customer, skip:[:passwords], controllers:{
-    registrations: "public/registrations",
-    sessions: "public/sessions"
-  }
-  
+  # customer側各機能
   scope module: :public do
     # カスタマー(ユーザー)関係
     resources :customers, except: [:new, :index, :delete] do
@@ -20,30 +15,33 @@ Rails.application.routes.draw do
     # ジャンル機能
     resources :genres, except: [:new, :destroy]
     
+    # 商品機能
+    resources :items, only: [:index, :show]
+    
   end
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  # admin用
-  devise_for :admin, skip:[:registrations, :passwords], controllers:{
-    sessions: "admin/sessions"
-  }
-  
+  # admin側各機能
   namespace :admin do
     root to: 'homes#top'
     resources :genres, except: [:new, :show, :destroy]
-    # get 'genres/index' => 'genres#index'
-    # post 'genres/create' => 'genres#create'
+    resources :items
   end
+  
+  
+  
+    # customer用(名前空間はpublic)
+  devise_for :customer, skip:[:passwords], controllers:{
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
+  
+  
+    # admin用
+  devise_for :admin, skip:[:registrations, :passwords], controllers:{
+    sessions: "admin/sessions"
+  }
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
