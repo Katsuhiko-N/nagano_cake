@@ -1,8 +1,6 @@
-<h2>新規会員登録</h2>
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
+<%= form_with model: @customer, url: admin_customer_path do |f| %>
   <div class="field">
     <p>姓</p>
     <%= f.text_field :last_name %>
@@ -44,24 +42,16 @@
     <p>電話番号（ハイフンなし）</p>
     <%= f.text_field :telephone_number %>
   </div>
-
-
+  
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <p>会員ステータス</p>
+    <%= f.radio_button :is_active, :true %>
+    <%= f.label :is_active, "有効" %>
+    <%= f.radio_button :is_active, :false %>
+    <%= f.label :is_active, "無効" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
+  
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "変更を保存" %>
   </div>
 <% end %>
-
-<%= render "public/shared/links" %>
