@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     # 住所機能
     resources :addresses, except: [:new, :show]
     
+    # カート機能
+    resources :cart_items, except: [:new]
     
   end
   
