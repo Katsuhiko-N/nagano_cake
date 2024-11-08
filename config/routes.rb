@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :genres, except: [:new, :show, :destroy]
     resources :items
+    resources :customers, except: [:new, :create, :destroy]
   end
   
   
