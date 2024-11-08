@@ -1,2 +1,24 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<h2>ショッピングカート</h2>
+
+<table class="container">
+    <thead>
+        <tr class="row">
+            <th class="col-4">商品名</th>
+            <th class="col-2">単価（税込）</th>
+            <th class="col-2">数量</th>
+            <th class="col-2">小計</th>
+            <th class="col-2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= @cart_items.each do |cart_item| %>
+        <tr class="row">
+            <td class="col-4"><p>cart_item.name</p></td>
+            <td class="col-2"><p></p></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+            <td class="col-2"></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
