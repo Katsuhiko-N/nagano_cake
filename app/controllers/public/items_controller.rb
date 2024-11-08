@@ -1,7 +1,6 @@
 class Public::ItemsController < ApplicationController
-  # before_action :authenticate_admin!
+  
   def index
-    
     @genres = Genre.all
     if params[:genre_name] == nil
       @items = Item.where(is_active: true)

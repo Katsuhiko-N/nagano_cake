@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     # 商品機能
     resources :items, only: [:index, :show]
     
+    # 住所機能
+    resources :addresses, except: [:new, :show]
+    
+    
   end
   
   
