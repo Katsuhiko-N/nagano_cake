@@ -17,7 +17,7 @@
                 <td><p>ジャンル</p></td><td><%= @item.genre.name %></td>
             </tr>
             <tr>
-                <td><p>税込み価格（税抜価格）</p></td><td><%= @item.with_tax_price %>(<%= @item.without_tax_price %>)円</td>
+                <td><p>税込み価格（税抜価格）</p></td><td><%= @item.with_tax_price.to_s(:delimited) %>(<%= @item.without_tax_price.to_s(:delimited) %>)円</td>
             </tr>
             <tr>
                 <td><p>ジャンル</p></td><td><%= @item.genre.name %></td>

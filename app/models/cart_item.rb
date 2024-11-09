@@ -8,8 +8,9 @@ class CartItem < ApplicationRecord
     validates :customer_id, presence: true
     
     
-    
-    
-    
+    # 小計
+    def subtotal
+        (item.with_tax_price.to_i * amount.to_i).to_i
+    end
     
 end

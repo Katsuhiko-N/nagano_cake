@@ -20,7 +20,7 @@
                                     <td><%= @item.introduction %></td>
                                 </tr>
                                 <tr>
-                                    <td class="d-flex"><p>￥<%= @item.with_tax_price %></p><p class="mx-3">(税込)</p></td>
+                                    <td class="d-flex"><p>￥<%= @item.with_tax_price.to_s(:delimited) %></p><p class="mx-3">(税込)</p></td>
                                 </tr>
                             </tbody>
                         </table>

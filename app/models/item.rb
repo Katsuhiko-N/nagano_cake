@@ -13,11 +13,11 @@ class Item < ApplicationRecord
     validates :image, presence: true
     
     def with_tax_price
-        (price * 1.1).floor.to_s(:delimited)
+        (price * 1.1).floor
     end
     
     def without_tax_price
-        price.floor.to_s(:delimited)
+        price.floor
     end
     
     
