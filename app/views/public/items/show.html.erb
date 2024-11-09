@@ -20,7 +20,7 @@
                                     <td><%= @item.introduction %></td>
                                 </tr>
                                 <tr>
-                                    <td><p><%= number_to_currency(@item.price * 1.1, unit: "￥", strip_insignificant_zeros: true) %></p></td>
+                                    <td class="d-flex"><p>￥<%= @item.with_tax_price %></p><p class="mx-3">(税込)</p></td>
                                 </tr>
                             </tbody>
                         </table>
