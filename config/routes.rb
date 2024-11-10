@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'orders/new'
+    get 'orders/create'
+    get 'orders/index'
+    get 'orders/show'
+    get 'orders/update'
+    get 'orders/destroy'
+  end
   root to: 'homes#top'
   
   # customer側各機能
