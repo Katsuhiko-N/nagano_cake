@@ -18,14 +18,21 @@ class Public::CartItemsController < ApplicationController
       exist_cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: cart_params[:item_id])
       # amountを加算
       total_amount = exist_cart_item.amount + cart_params[:amount].to_i
-      if exist_cart_item.update(amount: total_amount)
-        redirect_to item_path(cart_params[:item_id])
-        flash[:notice] = "カートに追加しました"
+      
+      # カート内が10個を超えないように
+      unless total_amount > 10
+        if exist_cart_item.update(amount: total_amount)
+          redirect_to item_path(cart_params[:item_id])
+          flash[:notice] = "カートに追加しました"
+        else
+          redirect_to item_path(cart_params[:item_id])
+          flash[:notice] = "追加に失敗しました"
+        end
+        
       else
         redirect_to item_path(cart_params[:item_id])
-        flash[:notice] = "追加に失敗しました"
+        flash[:notice] = "カートの上限は10個までです（現在#{exist_cart_item.amount}個）"
       end
-      
     end
   end
 
