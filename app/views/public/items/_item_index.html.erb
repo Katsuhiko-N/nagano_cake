@@ -12,7 +12,7 @@
                     <% unless item == nil %>
                     <div><%= image_tag item.image, size: "200x200" %></div>
                     <p><%= link_to "#{item.name}", item_path(item.id) %></p>
-                    <p><%= number_to_currency(item.price, unit: "￥", strip_insignificant_zeros: true) %></p>
+                    <p>￥<%= item.with_tax_price.to_s(:delimited) %></p>
                     <% end %>
                 </td>
                 <% end %>
