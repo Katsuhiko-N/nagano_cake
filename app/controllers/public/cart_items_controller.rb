@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   
   def create
-    
     # 既にカートにアイテムがあるか
     if CartItem.find_by(customer_id: current_customer.id, item_id: cart_params[:item_id].to_i).nil?
       # ない場合
@@ -39,9 +38,11 @@ class Public::CartItemsController < ApplicationController
      @cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: cart_item_params[:item_id])
      if @cart_item.update(amount: cart_item_params[:amount])
        redirect_to cart_items_path
+       flash[:notice] = "個数を変更しました"
      else
        @cart_items = CartItem.where(customer_id: current_customer.id)
        render :index
+       flash[:notice] = "個数を変更できませんでした"
      end
   end
 
@@ -49,10 +50,12 @@ class Public::CartItemsController < ApplicationController
     unless params[:all_clean].nil?
       current_customer.cart_items.destroy_all
       redirect_to cart_items_path
+      flash[:notice] = "カートを空にしました"
     else
       cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: params[:id])
       cart_item.destroy
       redirect_to cart_items_path
+      flash[:notice] = "商品をカートから削除しました"
     end
     
   end

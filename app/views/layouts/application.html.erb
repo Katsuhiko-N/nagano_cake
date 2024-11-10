@@ -35,6 +35,11 @@
       <% end %>
     </div>
     
+    <!--フラシュメッセージ-->
+    <div>
+      <%= flash[:notice] %>
+    </div>
+    
     <%= yield %>
   </body>
 </html>
