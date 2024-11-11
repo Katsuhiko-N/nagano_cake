@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'orders/new'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-    get 'orders/update'
-    get 'orders/destroy'
-  end
   root to: 'homes#top'
   
   # customer側各機能
@@ -31,6 +23,9 @@ Rails.application.routes.draw do
     
     # カート機能
     resources :cart_items, except: [:new, :show]
+    
+    # 注文機能
+    resources :orders
     
   end
   
