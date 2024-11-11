@@ -1,7 +1,7 @@
 <h2>注文情報入力</h2>
 
-<div>
-    <% form_with model: @order do |f| %>
+<div class="container mx-auto">
+    <%= form_with model: @order do |f| %>
         <div>
             <h3>支払方法</h3>
             <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -10,20 +10,38 @@
             <%= f.label :payment_method_ceredit_card, Order.payment_methods_i18n[:transfer] %>
         </div>
         
-        <div>
+        <div class="d-block" >
             <h3>お届け先</h3>
-            <%= f.radio_button :address_id, "1" %>
-            <%= f.label :address_id, "ご自身の住所" %>
+            <div>
+                <%= f.radio_button :address_id, "1" %>
+                <%= f.label :address_id, "ご自身の住所" %>
+                <p><%= @customer.address_display %></p>
+            </div>
             
-            <%= f.radio_button :address_id, "2" %>
-            <%= f.label :address_id, "登録済み住所から選択" %>
-                <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+            <div>
+                <%= f.radio_button :address_id, "2" %>
+                <%= f.label :address_id, "登録済み住所から選択" %>
+                    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+            </div>
             
-            <%= f.radio_button :address_id, "3" %>
-            <%= f.label :address_id, "新しいお届け先" %>
-                <%= f.text_field :postal_code %>
-                <%= f.text_field :address %>
-                <%= f.text_field :name %>
+            <div>
+                <%= f.radio_button :address_id, "3" %>
+                <%= f.label :address_id, "新しいお届け先" %>
+                    <div>
+                        <%= f.label :address_id, "郵便番号" %>
+                        <%= f.text_field :postal_code %>
+                    </div>
+                    
+                    <div>
+                        <%= f.label :address_id, "住所" %>
+                        <%= f.text_field :address %>
+                    </div>
+                    
+                    <div>
+                        <%= f.label :address_id, "名前" %>
+                        <%= f.text_field :name %>
+                    </div>
+            </div>
         </div>
     <% end %>
 </div>
