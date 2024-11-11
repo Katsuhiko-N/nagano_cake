@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
   
   
-  def new
+  def confirm
     @order = Order.new
     @customer = Customer.find(current_customer.id)
   end
@@ -21,4 +21,14 @@ class Public::OrdersController < ApplicationController
 
   def destroy
   end
+  
+  
+  
+  private
+  
+  def order_params
+    params.require(:order).permit(:payment_method)
+  end
+  
+  
 end
