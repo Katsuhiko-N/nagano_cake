@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     # 注文機能
     resources :orders do
       collection do
-        post 'confirm'
+        get 'confirm'
       end
     end
     

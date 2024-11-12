@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2024_08_15_103557) do
     t.boolean "is_active", default: true, null: false
     t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
+    
     t.datetime "updated_at", precision: 6, null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
   end

@@ -1,24 +1,39 @@
 <h2>注文情報確認</h2>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-7">
             <table class="container">
                 <thead>
                     <tr class="row">
-                        <th class="col-6">商品名</th>
-                        <th class="col-2">単価（税込）</th>
+                        <th class="col-5">商品名</th>
+                        <th class="col-3">単価（税込）</th>
                         <th class="col-2">数量</th>
                         <th class="col-2">小計</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <% @cart_items.each do |cart_item| %>
                     <tr class="row">
-                        <td class="col-6"></td>
-                        <td class="col-2"></td>
-                        <td class="col-2"></td>
-                        <td class="col-2"></td>
+                        <td class="col-5">
+                            <p><%= cart_item.item.name %></p>
+                            
+                        </td>
+                        <td class="col-3">
+                            <p><%= cart_item.item.with_tax_price.to_s(:delimited) %></p>
+                            
+                        </td>
+                        <td class="col-2">
+                            <p><%= cart_item.amount %></p>
+                            
+                        </td>
+                        <td class="col-2">
+                            <p><%= cart_item.subtotal.to_s(:delimited) %></p>
+                            
+                        </td>
                     </tr>
+                    <% @total_price += cart_item.subtotal %>
+                    <% end %>
                 </tbody>
             </table>
         </div>
@@ -40,8 +55,20 @@
     </div>
 </div>
 
+<div class="d-flex">
+    <p>支払方法</p><p><%= Order.payment_methods_i18n[:credit_card] %></p>
+</div>
+
+<div class="d-flex">
+    <p>お届け先</p><p><%= @order.postal_code + "" + @order.address + "" + @order.name %></p>
+</div>
+
+
+<!--Orderモデルに必要な残りの情報（送料、請求額）-->
 <div>
-    <%= form_with :@order, url: orders_path, method: :post do |f| %>
-        <%= f.hidden_field : ,value => "" %>
+    <%= form_with model:@order, url: orders_path, method: :post do |f| %>
+        <%= f.hidden_field :shipping_cost ,:value => "800" %>
+        <%= f.hidden_field :total_payment ,:value => @total_price %>
+        <%= f.submit "注文を確定する" %>
     <% end %>
 </div>
