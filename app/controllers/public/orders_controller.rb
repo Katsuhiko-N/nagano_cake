@@ -42,11 +42,13 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     if @order.save
       order_detail = OrderDetail.new
+      # カートアイテムから移植
+      cart_items = CartItem.where(customer_id: current_customer.id)
+      binding.pry
       
-    
-    
-    
-    
+      
+      
+    end
   end
 
   def index

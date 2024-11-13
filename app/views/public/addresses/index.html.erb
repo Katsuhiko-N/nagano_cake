@@ -1,24 +1,24 @@
 <h2>配送先登録/一覧</h2>
 
+<%= form_with model: @address do |f| %>
 <table class="container">
     <tbody>
-        <%= form_with model: @address do |f| %>
         <tr class="row">
-            <td class="col-4"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
-            <td class="col-8"><%= f.text_field :postal_code %></td>
+            <td class="col-4"><p><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></p></td>
+            <td class="col-8"><p><%= f.text_field :postal_code %></p></td>
         </tr>
         <tr class="row">
-            <td class="col-4"><%= f.label :address, "住所" %></td>
-            <td class="col-8"><%= f.text_field :address %></td>
+            <td class="col-4"><p><%= f.label :address, "住所" %></p></td>
+            <td class="col-8"><p><%= f.text_field :address %></p></td>
         </tr>
         <tr class="row">
-            <td class="col-4"><%= f.label :name, "宛名" %></td>
-            <td class="col-5"><%= f.text_field :name %></td>
-            <td class="col-3"><%= f.submit "新規登録" %></td>
+            <td class="col-4"><p><%= f.label :name, "宛名" %></p></td>
+            <td class="col-5"><p><%= f.text_field :name %></p></td>
+            <td class="col-3"><p><%= f.submit "新規登録" %></p></td>
         </tr>
-        <% end %>
     </tbody>
 </table>
+<% end %>
 
 <table class="container">
     <thead>
