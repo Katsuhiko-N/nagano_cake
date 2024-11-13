@@ -39,7 +39,14 @@ class Public::OrdersController < ApplicationController
   
   def create
     @order = Order.new(order_params)
-    binding.pry
+    @order.customer_id = current_customer.id
+    if @order.save
+      order_detail = OrderDetail.new
+      
+    
+    
+    
+    
   end
 
   def index
