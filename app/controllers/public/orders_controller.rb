@@ -11,6 +11,8 @@ class Public::OrdersController < ApplicationController
     # カート情報 =>hiddenで送る
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @total_price = 0
+    @shipping_cost = 800
+    
     
     @order = Order.new(order_params)
     
@@ -36,6 +38,7 @@ class Public::OrdersController < ApplicationController
   
   
   def create
+    @order = Order.new(order_params)
     binding.pry
   end
 
@@ -56,7 +59,7 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
   
   
