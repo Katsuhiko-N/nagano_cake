@@ -114,8 +114,10 @@ ActiveRecord::Schema.define(version: 2024_08_15_103557) do
     t.integer "amount", null: false
     t.integer "makeing_status", default: 0, null: false
     t.integer "order_id"
+    t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_order_details_on_item_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
@@ -139,6 +141,7 @@ ActiveRecord::Schema.define(version: 2024_08_15_103557) do
   add_foreign_key "cart_items", "customers"
   add_foreign_key "cart_items", "items"
   add_foreign_key "items", "genres"
+  add_foreign_key "order_details", "items"
   add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "customers"
 end
