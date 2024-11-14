@@ -1,1 +1,34 @@
 <h2>注文履歴一覧</h2>
+
+<div>
+    <table class="container">
+        <thead>
+            <tr class="row">
+                <th class="col-3">購入日時</th>
+                <th class="col-3">購入者</th>
+                <th class="col-3">注文個数</th>
+                <th class="col-3">注文ステータス</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.each do |order| %>
+            <tr class="row">
+                <td class="col-3">
+                    <%= link_to admin_order_detail_path(order.id) do %>
+                        <p><%= order.created_at %></p>
+                    <% end %>
+                </td>
+                <td class="col-3">
+                    <p><%= order.customer.last_name + order.customer.first_name %></p>
+                </td>
+                <td class="col-3">
+                    <p><%= order.order_details.count %></p>
+                </td>
+                <td class="col-3">
+                    <p><%= order.status_now %></p>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
