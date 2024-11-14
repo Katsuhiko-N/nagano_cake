@@ -38,10 +38,11 @@ Rails.application.routes.draw do
   
   # admin側各機能
   namespace :admin do
-    root to: 'homes#top'
+
     resources :genres, except: [:new, :show, :destroy]
     resources :items
     resources :customers, except: [:new, :create, :destroy]
+    resources :order_details
   end
   
   
