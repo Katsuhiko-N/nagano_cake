@@ -50,7 +50,7 @@ class Public::OrdersController < ApplicationController
         order_detail = OrderDetail.new(order_id: @order.id)
         order_detail.item_id = cart_item.item_id
         order_detail.amount = cart_item.amount
-        order_detail.price = cart_item.amount.to_i * cart_item.item.price.to_i * 1.1
+        order_detail.price = order_detail.total_price
         unless order_detail.save
           # 保存失敗時
           redirect_to confirm_orders_path
