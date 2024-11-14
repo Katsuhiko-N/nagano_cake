@@ -9,7 +9,7 @@ class OrderDetail < ApplicationRecord
     validates :order_id, presence: true
     
     def total_price
-        return (amount.to_i * item.price.to_i * 1.1).to_i
+        return (amount.to_i * item.price.to_i).to_i
     end
     
     
