@@ -1,4 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
+    layout 'admin'
+    before_action :authenticate_admin!
+  
   def new
   end
 
@@ -6,6 +9,7 @@ class Admin::OrderDetailsController < ApplicationController
   end
 
   def index
+    
   end
 
   def show

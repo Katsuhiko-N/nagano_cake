@@ -3,7 +3,7 @@
 class Admin::SessionsController < Devise::SessionsController
   
   def after_sign_in_path_for(resouce)
-    admin_order_details_path
+    admin_orders_path
   end
   
   def after_sign_out_path_for(resouce)
