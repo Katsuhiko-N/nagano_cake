@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :cart_items, except: [:new, :show]
     
     # 注文機能
-    resources :orders do
+    resources :orders, only: [:new, :create] do
       collection do
         get 'confirm'
         get 'thanks'

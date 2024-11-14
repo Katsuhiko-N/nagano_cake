@@ -51,14 +51,14 @@ class Public::OrdersController < ApplicationController
         order_detail.item_id = cart_item.item_id
         order_detail.amount = cart_item.amount
         order_detail.price = cart_item.amount.to_i * cart_item.item.price.to_i * 1.1
-        if order_detail.save
-          current_customer.cart_items.destroy_all
-          redirect_to thanks_orders_path
-        else
+        unless order_detail.save
+          # 保存失敗時
           redirect_to confirm_orders_path
           flash[:notice] ="注文詳細情報の作成に失敗しました"
         end
       end
+      current_customer.cart_items.destroy_all
+      redirect_to thanks_orders_path
     else
       redirect_to confirm_orders_path
       flash[:notice] ="注文の作成に失敗しました"
@@ -68,21 +68,6 @@ class Public::OrdersController < ApplicationController
   def thanks
     
   end
-  
-  
-
-  def index
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-  
   
   
   private
