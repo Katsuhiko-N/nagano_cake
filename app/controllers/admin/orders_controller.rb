@@ -15,6 +15,13 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      # 入金確認時自動で制作待ちに
+      if @order.status == 1
+        order_details = OrderDetail.where(order_id: @order.id)
+        order_details.each do |order_detail|
+          order_detail.update(making_status: "1")
+        end
+      end
       redirect_to admin_order_path(params[:id])
       flash[:notice] = "ステータスを更新しました"
     else

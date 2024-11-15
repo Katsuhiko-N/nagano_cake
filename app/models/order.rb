@@ -26,4 +26,18 @@ class Order < ApplicationRecord
         end
     end
     
+    
+    
+    def all_conplete_check(id)
+        order_details = OrderDetail.where(order_id: id)
+        # すべて抽出して一個でも違えばfalse
+        order_details.each do |order_detail|
+            if order_detail.making_status != 3
+                return false
+            end
+        end
+        return true
+    end
+    
+    
 end
