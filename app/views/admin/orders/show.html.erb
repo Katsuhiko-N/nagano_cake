@@ -1,6 +1,7 @@
 <h2>注文履歴詳細</h2>
 
 <div>
+    <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
     <table class="container">
         <tbody>
             <tr class="row">
@@ -13,7 +14,7 @@
             </tr>
             <tr class="row">
                 <td class="col-4">配送先</td>
-                <td class="col-8"><p><%= @order.postal_code + "" + @order.address + "" + @order.name %></p></td>
+                <td class="col-8"><p><%= @order.postal_code + "" + @order.address %></p></td>
             </tr>
             <tr class="row">
                 <td class="col-4"></td>
@@ -31,44 +32,69 @@
             </tr>
             <tr class="row">
                 <td class="col-4">注文ステータス</td>
-                <td class="col-8"><p></p></td>
+                <td class="col-8"><p><%= f.select :status, [["入金待ち", "0"], ["入金確認", "1"], ["製作中", "2"], ["発送準備中", "3"], ["発送済み", "4"]] %><%= f.submit "更新" %></p></td>
             </tr>
         </tbody>
     </table>
+    <% end %>
 </div>
 
 
-<div>
-    <table class="container">
-        <thead>
-            <tr class="row">
-                <th class="col-3">商品名</th>
-                <th class="col-2">単価（税込）</th>
-                <th class="col-2">数量</th>
-                <th class="col-2">小計</th>
-                <th class="col-3">製作ステータス</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @order_details.each do |order_detail| %>
-            <tr class="row">
-                <td class="col-3">
-                    <p><%= order_detail.item.name %></p>
-                </td>
-                <td class="col-2">
-                    <p><%= order_detail.total_price.to_i * 1.1 %></p>
-                </td>
-                <td class="col-2">
-                    <p><%= order_detail.amount %></p>
-                </td>
-                <td class="col-2">
-                    <p><%= order_detail.total_price %></p>
-                </td>
-                <td class="col-3">
-                    <p><%= order.status_now %></p>
-                </td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            
+            <table class="container">
+                <thead>
+                    <tr class="row">
+                        <th class="col-3">商品名</th>
+                        <th class="col-2">単価(税込)</th>
+                        <th class="col-2">数量</th>
+                        <th class="col-2">小計</th>
+                        <th class="col-3">製作ステータス</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @order_details.each do |order_detail| %>
+                    <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id, order_id: params[:id]), method: :patch do |g| %>
+                    <tr class="row">
+                        <td class="col-3">
+                            <p><%= order_detail.item.name %></p>
+                        </td>
+                        <td class="col-2">
+                            <p><%= (order_detail.total_price * 1.1).to_i.to_s(:delimited)  %></p>
+                        </td>
+                        <td class="col-2">
+                            <p><%= order_detail.amount %></p>
+                        </td>
+                        <td class="col-2">
+                            <p><%= order_detail.total_price.to_s(:delimited) %></p>
+                        </td>
+                        <td class="col-3">
+                            <p><%= g.select :making_status, [["着手不可", "0"], ["制作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]] %><%= g.submit "更新" %></p>
+                        </td>
+                        <% @all_total += order_detail.total_price %>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+            
+        </div>
+        
+        
+        <table class="col-3 container">
+            <tbody>
+                <tr class="row">
+                    <td class="col-6"><p>商品合計</p></td><td class="col-6"><p><%= @all_total.to_i.to_s(:delimited) %>円</p></td>
+                </tr>
+                <tr class="row">
+                    <td class="col-6"><p>送料</p></td><td class="col-6"><%= @order.shipping_cost.to_i.to_s(:delimited) %>円</td>
+                </tr>
+                <tr class="row">
+                    <td class="col-6"><p>請求金額合計</p></td><td class="col-6"><%= (@all_total.to_i + @order.shipping_cost.to_i).to_s(:delimited) %>円</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

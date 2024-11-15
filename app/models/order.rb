@@ -5,6 +5,11 @@ class Order < ApplicationRecord
     
     enum payment_method: { credit_card: 0, transfer: 1 }
     
+    # 送料
+    def shipping_cost
+        return "800"
+    end
+    
     def status_now
         if status == 0
             return "入金待ち"
