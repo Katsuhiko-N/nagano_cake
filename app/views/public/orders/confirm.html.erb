@@ -61,7 +61,7 @@
         <% if @order.payment_method == "0" %>
             <p><%= Order.payment_methods_i18n[:credit_card] %></p>
         <% else %>
-        <p><%= Order.payment_methods_i18n[:transfer] %></p>
+            <p><%= Order.payment_methods_i18n[:transfer] %></p>
         <% end %>
 </div>
 
