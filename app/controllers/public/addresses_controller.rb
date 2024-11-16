@@ -1,10 +1,10 @@
 class Public::AddressesController < ApplicationController
-# 他者が編集できないよう後で権限必要
-
-
+  before_action :authenticate_customer!
+  
+  
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
   end
   
   def create
@@ -13,7 +13,7 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-      @addresses = Address.all
+      @addresses = Address.where(customer_id: current_customer.id)
       render :index
     end
   end

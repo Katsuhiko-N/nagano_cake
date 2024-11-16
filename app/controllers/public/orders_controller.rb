@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  
+  before_action :authenticate_customer!
   
   def new
     @order = Order.new
@@ -29,6 +29,7 @@ class Public::OrdersController < ApplicationController
         @order.name = @address.name
       elsif params[:order][:select_address] == "2"
         # 新しい住所（フォームに入力）
+        
       else
         redirect_to cart_items_path
         flash[:notice] = "注文情報エラー"
