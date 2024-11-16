@@ -47,4 +47,11 @@
         <p>合計金額</p>
         <p><%= @total_price.to_s(:delimited) %></p>
     </div>
+    <div>
+        <% unless @cart_items.blank? %>
+            <%= link_to new_order_path do %>
+                <p>情報入力に進む</p>
+            <% end %>
+        <% end %>
+    </div>
 </div>

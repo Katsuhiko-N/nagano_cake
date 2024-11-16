@@ -10,7 +10,7 @@ class CartItem < ApplicationRecord
     
     # 小計
     def subtotal
-        (item.with_tax_price.to_i * amount.to_i).to_i
+        (item.with_tax_price.to_i * amount.to_i)
     end
     
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   root to: 'homes#top'
   
   # customer側各機能
@@ -24,16 +23,26 @@ Rails.application.routes.draw do
     # カート機能
     resources :cart_items, except: [:new, :show]
     
+    # 注文機能
+    resources :orders, except: [:edit, :update, :destroy] do
+      collection do
+        get 'confirm'
+        get 'thanks'
+      end
+    end
+    
   end
   
   
   
   # admin側各機能
   namespace :admin do
-    root to: 'homes#top'
+
     resources :genres, except: [:new, :show, :destroy]
     resources :items
     resources :customers, except: [:new, :create, :destroy]
+    resources :orders, only:[:index, :show, :update]
+    resources :order_details, only:[:update]
   end
   
   

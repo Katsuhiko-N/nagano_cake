@@ -8,5 +8,8 @@
 <%= render 'profile', customer: @customer %>
 
 <div class="d-flex">
+    <p class="mr-3">注文履歴</p><%= link_to "一覧を見る", orders_path %>
+</div>
+<div class="d-flex">
     <p class="mr-3">配送先</p><%= link_to "一覧を見る", addresses_path %>
 </div>
